@@ -8,7 +8,7 @@ export const COLS = 5;
 export const words = {
 	...wordList,
 	contains: (word: string) => {
-		return wordList.words.includes(word) || wordList.valid.includes(word);
+		return wordList.words.includes(word);
 	},
 };
 
@@ -136,8 +136,9 @@ function countOccurences<T>(arr: T[], val: T) {
 }
 
 export function getState(word: string, guess: string): LetterState[] {
-	const charArr = word.split("");
-	const result = Array<LetterState>(5).fill("⬛");
+    const charArr = word.split("");
+    //这里原本写了个5
+	const result = Array<LetterState>(COLS).fill("⬛");
 	for (let i = 0; i < word.length; ++i) {
 		if (charArr[i] === guess.charAt(i)) {
 			result[i] = "🟩";
